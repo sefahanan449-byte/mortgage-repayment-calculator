@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Calculate your monthly mortgage repayments and total repayment."
+    >
+
+    <title>Mortgage Repayment Calculator</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- Main Container -->
+    <main class="calculator-container">
+
+        <!-- Left Section: Calculator Form -->
+        <section class="calculator-form">
+
+            <!-- Header -->
+            <header class="form-header">
+
+                <h1>Mortgage Calculator</h1>
+
+                <button
+                    type="reset"
+                    form="mortgage-form"
+                    class="clear-button"
+                    id="clear-all"
+                >
+                    Clear All
+                </button>
+
+            </header>
+
+
+            <!-- Mortgage Form -->
+            <form id="mortgage-form" novalidate>
+
+                <!-- Mortgage Amount -->
+                <div class="form-group">
+
+                    <label for="mortgage-amount">
+                        Mortgage Amount
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-symbol">£</span>
+
+                        <input
+                            type="number"
+                            id="mortgage-amount"
+                            name="mortgageAmount"
+                            placeholder="200000"
+                            min="0.01"
+                            step="any"
+                            aria-describedby="amount-error"
+                        >
+
+                    </div>
+
+                    <small
+                        class="error-message"
+                        id="amount-error"
+                    >
+                        This field is required.
+                    </small>
+
+                </div>
+
+
+                <!-- Mortgage Term and Interest Rate -->
+                <div class="form-row">
+
+                    <!-- Mortgage Term -->
+                    <div class="form-group">
+
+                        <label for="mortgage-term">
+                            Mortgage Term
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                                type="number"
+                                id="mortgage-term"
+                                name="mortgageTerm"
+                                placeholder="25"
+                                min="1"
+                                step="1"
+                                aria-describedby="term-error"
+                            >
+
+                            <span class="input-unit">
+                                years
+                            </span>
+
+                        </div>
+
+                        <small
+                            class="error-message"
+                            id="term-error"
+                        >
+                            This field is required.
+                        </small>
+
+                    </div>
+
+
+                    <!-- Interest Rate -->
+                    <div class="form-group">
+
+                        <label for="interest-rate">
+                            Interest Rate
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                            type="number"
+                                id="interest-rate"
+                                name="interestRate"
+                                placeholder="5.25"
+                                min="0"
+                                step="any"
+                                aria-describedby="rate-error"
+                            >
+
+                            <span class="input-unit">
+                                %
+                            </span>
+
+                        </div>
+
+                        <small
+                            class="error-message"
+                            id="rate-error"
+                        >
+                            This field is required.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Mortgage Type -->
+                <fieldset class="mortgage-type">
+
+                    <legend>Mortgage Type</legend>
+
+                    <!-- Repayment Option -->
+                    <label class="radio-option">
+
+                        <input
+                            type="radio"
+                            name="mortgageType"
+                            value="repayment"
+                        >
+
+                        <span class="custom-radio"></span>
+
+                        <span>Repayment</span>
+
+                    </label>
+
+
+                    <!-- Interest Only Option -->
+                    <label class="radio-option">
+
+                        <input
+                            type="radio"
+                            name="mortgageType"
+                            value="interest-only"
+                        >
+
+                        <span class="custom-radio"></span>
+
+                        <span>Interest Only</span>
+
+                    </label>
+
+                    <small
+                        class="error-message"
+                        id="type-error"
+                    >
+                        Please select a mortgage type.
+                    </small>
+
+                </fieldset>
+
+
+                <!-- Calculate Button -->
+                <button
+                    type="submit"
+                    class="calculate-button"
+                    id="calculate-btn"
+                >
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                    >
+                        <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                        <line x1="8" y1="6" x2="16" y2="6"></line>
+                        <line x1="8" y1="10" x2="8" y2="10"></line>
+                        <line x1="12" y1="10" x2="12" y2="10"></line>
+                        <line x1="16" y1="10" x2="16" y2="10"></line>
+                        <line x1="8" y1="14" x2="8" y2="14"></line>
+                        <line x1="12" y1="14" x2="12" y2="14"></line>
+                        <line x1="16" y1="14" x2="16" y2="14"></line>
+                        <line x1="8" y1="18" x2="8" y2="18"></line>
+                        <line x1="12" y1="18" x2="12" y2="18"></line>
+                        <line x1="16" y1="18" x2="16" y2="18"></line>
+                    </svg>
+
+                    Calculate Repayments
+
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Right Section: Results -->
+        <section
+            class="results-section"
+            aria-live="polite"
+            aria-atomic="true"
+        >
+
+            <!-- Initial Empty State -->
+            <div class="empty-state" id="empty-state">
+
+                <div class="illustration">
+                  <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="190"
+                        height="150"
+                        viewBox="0 0 192 160"
+                        fill="none"
+                        aria-hidden="true"
+                    >
+
+                        <path
+                            d="M20 140H172"
+                            stroke="#64748B"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                        />
+
+                        <rect
+                            x="35"
+                            y="50"
+                            width="122"
+                            height="82"
+                            rx="8"
+                            fill="#334155"
+                        />
+
+                        <path
+                            d="M28 50L96 10L164 50H28Z"
+                            fill="#94A3B8"
+                        />
+
+                        <rect
+                            x="79"
+                            y="80"
+                            width="34"
+                            height="52"
+                            rx="3"
+                            fill="#16A34A"
+                        />
+
+                        <rect
+                            x="47"
+                            y="65"
+                            width="20"
+                            height="20"
+                            rx="2"
+                            fill="#CBD5E1"
+                        />
+
+                        <rect
+                            x="125"
+                            y="65"
+                            width="20"
+                            height="20"
+                            rx="2"
+                            fill="#CBD5E1"
+                        />
+
+                        <circle
+                            cx="145"
+                            cy="30"
+                            r="13"
+                            fill="#D9F99D"
+                        />
+
+                        <path
+                            d="M140 30H150M145 25V35"
+                            stroke="#365314"
+                            stroke-width="2"
+                        />
+
+                    </svg>
+
+                </div>
+
+
+                <h2>Results shown here</h2>
+
+                <p>
+                    Complete the form and click "Calculate Repayments"
+                    to see what your monthly repayments would be.
+                </p>
+
+            </div>
+
+
+            <!-- Calculated Results -->
+            <div class="results-state" id="results-state">
+
+                <h2>Your results</h2>
+
+                <p class="results-description">
+                    Your results are shown below based on the information
+                    you provided. To adjust the results, edit the form
+                    and click "Calculate Repayments" again.
+                </p>
+
+
+                <!-- Monthly Repayment -->
+                <div class="result-card">
+
+                    <div class="monthly-result">
+
+                        <p>Your monthly repayments</p>
+
+                        <h3 id="monthly-result">
+                            £0.00
+                        </h3>
+
+                    </div>
+
+
+                    <hr>
+
+
+                    <!-- Total Repayment -->
+                    <div class="total-result">
+
+                        <p>Total you'll repay over the term</p>
+
+                        <h4 id="total-result">
+                            £0.00
+                        </h4>
+
+                    </div>
+
+                </div>
+
+
+                <p class="result-note">
+                    These calculations are estimates and do not include
+                    additional fees or charges that may apply to your mortgage.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
